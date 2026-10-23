@@ -4,7 +4,7 @@ import math
 def tokenize(expression):
     pattern = r'\d+(?:\.\d*)?|\.\d+|[A-Za-z_]\w*|[+\-*/()]'
     tokens = re.findall(pattern, expression)
-    # Удаляем допустимые токены и пробелы. Если что-то осталось, во входе есть недопустимые символы.
+    # Удаляем допустимые токены и пробелы.
     if re.sub(pattern, '', expression).strip():
         raise ValueError("Недопустимые символы в выражении")
     return tokens
@@ -74,7 +74,7 @@ def calculate(expression):
             position += 1
             return float(token)
         raise ValueError(f"Неожиданный токен: {token}")
-    # Логическое И имеет более низкий приоритет, чем арифметические операции
+    # Логическое И
     def parse_and():
         nonlocal position
         result = parse_expression()
